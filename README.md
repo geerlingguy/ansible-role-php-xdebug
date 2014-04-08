@@ -1,6 +1,6 @@
 # Ansible Role: PHP-XDebug
 
-Installs PHP [XDebug](http://xdebug.org/) on RHEL/CentOS 6.x servers.
+Installs PHP [XDebug](http://xdebug.org/) on Linux servers.
 
 ## Requirements
 
