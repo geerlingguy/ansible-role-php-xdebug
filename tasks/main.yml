@@ -23,6 +23,14 @@
     - make
   notify: restart webserver
 
+- name: Ensure Xdebug module path exists.
+  file:
+    path: "{{ php_xdebug_module_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: Move Xdebug module into place.
   shell: >
     cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so
