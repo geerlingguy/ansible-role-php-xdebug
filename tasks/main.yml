@@ -1,8 +1,8 @@
 ---
 - name: Download Xdebug.
-  get_url: >
-    url=http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz
-    dest={{ workspace }}
+  get_url:
+    url: "http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
+    dest: "{{ workspace }}"
 
 - name: Untar Xdebug.
   command: >
@@ -18,7 +18,7 @@
     - phpize
     - ./configure
     - make
-  notify: restart apache
+  notify: restart webserver
 
 - name: Move Xdebug module into place.
   shell: >
@@ -26,8 +26,10 @@
     creates={{ php_xdebug_module_path }}/xdebug.so
 
 - name: Copy xdebug INI into php.d folder.
-  template: >
-    src=xdebug.ini.j2
-    dest=/etc/php.d/xdebug.ini
-    owner=root group=root mode=644
-  notify: restart apache
+  template:
+    src: xdebug.ini.j2
+    dest: /etc/php.d/xdebug.ini
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart webserver

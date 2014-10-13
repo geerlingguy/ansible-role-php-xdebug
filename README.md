@@ -1,5 +1,7 @@
 # Ansible Role: PHP-XDebug
 
+[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-php-xdebug.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-php-xdebug)
+
 Installs PHP [XDebug](http://xdebug.org/) on Linux servers.
 
 ## Requirements
@@ -8,7 +10,7 @@ None.
 
 ## Role Variables
 
-Available variables are listed below, along with default values (see `vars/main.yml`):
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
     workspace: /root
 
