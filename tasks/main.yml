@@ -1,4 +1,7 @@
 ---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
 - name: Download Xdebug.
   get_url:
     url: "http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
@@ -22,13 +25,13 @@
 
 - name: Move Xdebug module into place.
   shell: >
-    cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}
+    cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so
     creates={{ php_xdebug_module_path }}/xdebug.so
 
 - name: Copy xdebug INI into php.d folder.
   template:
     src: xdebug.ini.j2
-    dest: /etc/php.d/xdebug.ini
+    dest: "{{ php_extension_conf_path }}/xdebug.ini"
     owner: root
     group: root
     mode: 0644
