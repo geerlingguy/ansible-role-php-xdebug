@@ -35,6 +35,7 @@
   shell: >
     cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so
     creates={{ php_xdebug_module_path }}/xdebug.so
+  notify: restart webserver
 
 - name: Copy xdebug INI into php.d folder.
   template:
