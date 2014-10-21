@@ -20,6 +20,11 @@ Where Xdebug setup files will be downloaded and built.
 
 The version of Xdebug to be installed (see [Xdebug docs](http://xdebug.org/docs/install) for a current listing).
 
+    php_xdebug_default_enable: 1
+    php_xdebug_coverage_enable: 1
+
+Whether to enable XDebug coverage and default exception handling or not. Disable these for slightly improved PHP performance, enable these to use XDebug to the fullest extent.
+
     php_xdebug_module_path: /usr/lib64/php/modules
 
 The path where `xdebug.so` will be installed.
@@ -44,6 +49,10 @@ The location of the xdebug log (useful if you're having trouble connecting).
     php_xdebug_idekey: sublime.xdebug
 
 The IDE key to use in the URL when making Xdebug requests (e.g. `http://example.local/?XDEBUG_SESSION_START=sublime.xdebug`).
+
+    php_xdebug_max_nesting_level: 100
+
+The maximimum function nesting level before Xdebug bails and throws a fatal exception.
 
 ## Dependencies
 
