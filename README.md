@@ -25,6 +25,10 @@ The version of Xdebug to be installed (see [Xdebug docs](http://xdebug.org/docs/
 
 Whether to enable XDebug coverage and default exception handling or not. Disable these for slightly improved PHP performance, enable these to use XDebug to the fullest extent.
 
+    php_xdebug_cli_enable: 1
+
+Whether xdebug is enabled for the CLI.
+
     php_xdebug_module_path: /usr/lib64/php/modules
 
 The path where `xdebug.so` will be installed.
@@ -53,11 +57,6 @@ The IDE key to use in the URL when making Xdebug requests (e.g. `http://example.
     php_xdebug_max_nesting_level: 100
 
 The maximimum function nesting level before Xdebug bails and throws a fatal exception.
-
-    php_xdebug_cli_enable: 1
-
-Whether xdebug is enabled for the CLI.
-
 
 ## Dependencies
 
