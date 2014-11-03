@@ -54,6 +54,11 @@ The IDE key to use in the URL when making Xdebug requests (e.g. `http://example.
 
 The maximimum function nesting level before Xdebug bails and throws a fatal exception.
 
+    php_xdebug_cli_enable: "true"
+
+Whether xdebug is enabled for the CLI.
+
+
 ## Dependencies
 
   - geerlingguy.php
