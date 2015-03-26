@@ -15,5 +15,5 @@ php_xdebug_remote_log: /tmp/xdebug.log
 
 php_xdebug_idekey: sublime.xdebug
 
-php_xdebug_max_nesting_level: 100
+php_xdebug_max_nesting_level: 256
 
