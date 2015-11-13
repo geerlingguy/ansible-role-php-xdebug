@@ -6,7 +6,7 @@ Installs PHP [XDebug](http://xdebug.org/) on Linux servers.
 
 ## Requirements
 
-None.
+Prior to running this role, make sure the `php-devel` and `@Development Tools` (for RHEL/CentOS) or `php5-dev` + `build-essential` packages (for Debian/Ubuntu) are present on the system, as they are required for the build of Xdebug.
 
 ## Role Variables
 
