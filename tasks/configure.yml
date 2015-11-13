@@ -1,0 +1,40 @@
+---
+- name: Copy xdebug ini into main extension config folder.
+  template:
+    src: xdebug.ini.j2
+    dest: "{{ php_extension_conf_path }}/xdebug.ini"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart webserver
+    - restart php-fpm
+
+- name: Check for separate cli php conf.d directory.
+  stat: path=/etc/php5/cli/conf.d
+  register: php_cli_path
+  when: php_xdebug_cli_enable
+
+- name: Symlink xdebug.ini into separate cli directory if it exists.
+  file:
+    src: "{{ php_extension_conf_path }}/xdebug.ini"
+    dest: /etc/php5/cli/conf.d/xdebug.ini
+    state: link
+  when: php_xdebug_cli_enable and php_cli_path.stat.isdir is defined and php_cli_path.stat.isdir
+  notify:
+    - restart webserver
+    - restart php-fpm
+
+- name: Check for separate fpm conf.d directory.
+  stat: path=/etc/php5/fpm/conf.d
+  register: php_fpm_path
+
+- name: Symlink xdebug.ini into separate fpm directory if it exists.
+  file:
+    src: "{{ php_extension_conf_path }}/xdebug.ini"
+    dest: /etc/php5/fpm/conf.d/xdebug.ini
+    state: link
+  when: php_fpm_path.stat.isdir is defined and php_fpm_path.stat.isdir
+  notify:
+    - restart webserver
+    - restart php-fpm
