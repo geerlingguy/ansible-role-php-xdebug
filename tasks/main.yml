@@ -5,7 +5,7 @@
 - name: Download Xdebug.
   get_url:
     url: "http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
-    dest: "{{ workspace }}"
+    dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
 
 - name: Untar Xdebug.
   command: >
