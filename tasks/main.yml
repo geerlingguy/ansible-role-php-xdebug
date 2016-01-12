@@ -12,7 +12,8 @@
 - name: Untar Xdebug.
   unarchive:
     src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
-    dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}"
+    dest: "{{ workspace }}"
+    copy: no
 
 - name: Build Xdebug.
   shell: >
