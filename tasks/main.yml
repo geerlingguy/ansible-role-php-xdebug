@@ -7,10 +7,12 @@
     url: "http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
     dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
 
+# TODO: In 2.0, we can set the 'src' to the URL from the get_url task above and
+# cut out one extra task :)
 - name: Untar Xdebug.
-  command: >
-    tar -C {{ workspace }} -xvzf {{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz
-    creates={{ workspace }}/xdebug-{{ php_xdebug_version }}/README
+  unarchive:
+    src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
+    dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}"
 
 - name: Build Xdebug.
   shell: >
