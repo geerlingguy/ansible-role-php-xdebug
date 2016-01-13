@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
 
-  variables:
+  vars:
     workspace: /home/travis
 
   roles:
