@@ -37,5 +37,7 @@ script:
   # Run script to test if XDebug is available and working.
   - php tests/xdebug-test.php
 
+  - php -v
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
