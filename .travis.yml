@@ -11,12 +11,13 @@ before_install:
   # Add repository for later version of PHP.
   - sudo add-apt-repository ppa:ondrej/php5-5.6 -y
   - sudo apt-get update -qq
+  - php -v
 
 install:
   # Install Ansible.
   # TODO - remove specific version number after the following issue is fixed:
   # https://github.com/ansible/ansible-modules-core/issues/2473
-  - pip install ansible==1.9.4
+  - sudo pip install ansible==1.9.4
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
