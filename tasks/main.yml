@@ -4,14 +4,14 @@
 
 - name: Download Xdebug.
   get_url:
-    url: "http://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
-    dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
+    url: "https://github.com/xdebug/xdebug/archive/{{ php_xdebug_version }}.tar.gz"
+    dest: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz.gz"
 
 # TODO: In 2.0, we can set the 'src' to the URL from the get_url task above and
 # cut out one extra task :)
 - name: Untar Xdebug.
   unarchive:
-    src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz"
+    src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}.tgz.gz"
     dest: "{{ workspace }}"
     copy: no
 
