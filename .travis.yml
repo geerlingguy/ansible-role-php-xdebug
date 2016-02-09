@@ -9,8 +9,8 @@ before_install:
   - sudo apt-get update -qq
 
   # Add repository for later version of PHP.
-  - sudo add-apt-repository ppa:ondrej/php5-5.6
-  - sudo apt-get update
+  - sudo add-apt-repository ppa:ondrej/php5-5.6 -y
+  - sudo apt-get update -qq
 
 install:
   # Install Ansible.
