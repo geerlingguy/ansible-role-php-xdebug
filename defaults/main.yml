@@ -18,3 +18,7 @@ php_xdebug_idekey: sublime.xdebug
 
 php_xdebug_max_nesting_level: 256
 
+php_xdebug_profiler_append: 0
+php_xdebug_profiler_enable_trigger: 1
+php_xdebug_profiler_output_dir: /var/log/xdebug
+php_xdebug_profiler_output_name: xdebug.profile.%p
