@@ -2,6 +2,18 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Ensure dependencies for building from source are installed (RedHat).
+  yum: "pkg={{ item }} state=installed"
+  with_items:
+    - make
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure dependencies for building from source are installed (Debian).
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - make
+  when: ansible_os_family == 'Debian'
+
 - name: Download Xdebug.
   get_url:
     url: "https://github.com/xdebug/xdebug/archive/{{ php_xdebug_version }}.tar.gz"
