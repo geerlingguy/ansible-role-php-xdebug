@@ -14,9 +14,6 @@
     - make
   when: ansible_os_family == 'Debian'
 
-# PHP7.0-compatible Xdebug is athttps://xdebug.org/files/xdebug-2.4.0.tgz
-# PHP5.6-compatible Xdebug is at https://xdebug.org/files/xdebug-2.2.4.tgz
-
 - name: Download Xdebug.
   get_url:
     url: "https://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
