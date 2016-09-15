@@ -15,8 +15,6 @@
         php_packages:
           - php7.0-common
           - php7.0-cli
-          - libssl1.0.0
-          - libssl-dev
           - php7.0-dev
           - php7.0-fpm
           - libpcre3-dev
