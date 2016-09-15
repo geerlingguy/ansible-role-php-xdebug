@@ -8,6 +8,9 @@ env:
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: debian8
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 
 services:
   - docker
@@ -40,7 +43,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Run script to test if Xdebug is available and working.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm php /etc/ansible/roles/role_under_test/tests/xdebug-test.php'
+  - 'sudo docker exec "$(cat ${container_id})" env TERM=xterm php /etc/ansible/roles/role_under_test/tests/xdebug-test.php'
 
 after_success:
   # Clean up.
