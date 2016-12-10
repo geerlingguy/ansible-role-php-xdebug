@@ -8,6 +8,9 @@ env:
   - distro: ubuntu1604
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: ubuntu1404
+    init: /sbin/init
+    run_opts: ""
   - distro: debian8
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
@@ -41,6 +44,8 @@ script:
 
   # Run script to test if Xdebug is available and working.
   - 'docker exec "$(cat ${container_id})" env TERM=xterm php /etc/ansible/roles/role_under_test/tests/xdebug-test.php'
+
+  - 'docker exec "$(cat ${container_id})" env TERM=xterm php --version'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
