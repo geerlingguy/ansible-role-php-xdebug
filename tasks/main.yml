@@ -12,34 +12,53 @@
     php_xdebug_config_filename: "{{ __php_xdebug_config_filename }}"
   when: php_xdebug_config_filename is not defined
 
+- name: Define php_xdebug_source_path.
+  set_fact:
+    php_xdebug_source_path: "{{ workspace }}/xdebug-{{ php_xdebug_version }}-php{{ php_version|default('') }}"
+  when: php_xdebug_source_path is not defined
+
+- name: Check if the requested version of xdebug is already installed
+  shell: "diff -s {{ php_xdebug_source_path }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so 2>/dev/null"
+  register: is_installed
+  failed_when: false
+  changed_when: is_installed.rc != 0
+
 - name: Ensure dependencies for building from source are installed (RedHat).
   yum: "name={{ item }} state=installed"
   with_items:
     - '@development'
-  when: ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat' and is_installed.changed
 
 - name: Ensure dependencies for building from source are installed (Debian).
   apt: "name={{ item }} state=installed"
   with_items:
     - build-essential
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and is_installed.changed
 
 - name: Untar Xdebug.
   unarchive:
     src: "https://xdebug.org/files/xdebug-{{ php_xdebug_version }}.tgz"
     dest: "{{ workspace }}"
     copy: no
+  when: is_installed.changed
+
+- name: Copy Xdebug source to a php version -specific path.
+  shell: >
+    cp -r {{ workspace }}/xdebug-{{ php_xdebug_version }} {{ php_xdebug_source_path }}
+    creates={{ php_xdebug_source_path }}
+  when: is_installed.changed
 
 - name: Build Xdebug.
   shell: >
     {{ item }}
-    chdir={{ workspace }}/xdebug-{{ php_xdebug_version }}
-    creates={{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so
+    chdir={{ php_xdebug_source_path }}
+    creates={{ php_xdebug_source_path }}/modules/xdebug.so
   with_items:
     - phpize
     - ./configure
     - make
   notify: restart webserver
+  when: is_installed.changed
 
 - name: Ensure Xdebug module path exists.
   file:
@@ -48,11 +67,14 @@
     owner: root
     group: root
     mode: 0755
+  when: is_installed.changed
 
 - name: Move Xdebug module into place.
-  shell: >
-    cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so
-    creates={{ php_xdebug_module_path }}/xdebug.so
+  copy:
+    src: "{{ php_xdebug_source_path }}/modules/xdebug.so"
+    dest: "{{ php_xdebug_module_path }}/xdebug.so"
+    remote_src: yes
+  when: is_installed.changed
   notify: restart webserver
 
 - include: configure.yml
