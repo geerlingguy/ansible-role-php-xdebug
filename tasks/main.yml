@@ -42,10 +42,9 @@
   when: not is_installed.stdout
 
 - name: Copy Xdebug source to a php version -specific path.
-  copy:
-    src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}"
-    dest: "{{ php_xdebug_source_path }}"
-    remote_src: yes
+  shell: >
+    cp -r {{ workspace }}/xdebug-{{ php_xdebug_version }} {{ php_xdebug_source_path }}
+    creates={{ php_xdebug_source_path }}
   when: not is_installed.stdout
 
 - name: Build Xdebug.
