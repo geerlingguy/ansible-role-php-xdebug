@@ -12,8 +12,13 @@
     php_xdebug_config_filename: "{{ __php_xdebug_config_filename }}"
   when: php_xdebug_config_filename is not defined
 
+- name: Define php_xdebug_source_path.
+  set_fact:
+    php_xdebug_source_path: "{{ workspace }}/xdebug-{{ php_xdebug_version }}-php{{ php_version|default('') }}"
+  when: php_xdebug_source_path is not defined
+
 - name: Check if the requested version of xdebug is already installed
-  shell: "diff -s {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so 2>/dev/null"
+  shell: "diff -s {{ php_xdebug_source_path }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so 2>/dev/null"
   failed_when: false
   register: is_installed
 
@@ -36,11 +41,18 @@
     copy: no
   when: not is_installed.stdout
 
+- name: Copy Xdebug source to a php version -specific path.
+  copy:
+    src: "{{ workspace }}/xdebug-{{ php_xdebug_version }}"
+    dest: "{{ php_xdebug_source_path }}"
+    remote_src: yes
+  when: not is_installed.stdout
+
 - name: Build Xdebug.
   shell: >
     {{ item }}
-    chdir={{ workspace }}/xdebug-{{ php_xdebug_version }}
-    creates={{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so
+    chdir={{ php_xdebug_source_path }}
+    creates={{ php_xdebug_source_path }}/modules/xdebug.so
   with_items:
     - phpize
     - ./configure
@@ -58,8 +70,10 @@
   when: not is_installed.stdout
 
 - name: Move Xdebug module into place.
-  shell: >
-    cp {{ workspace }}/xdebug-{{ php_xdebug_version }}/modules/xdebug.so {{ php_xdebug_module_path }}/xdebug.so
+  copy:
+    src: "{{ php_xdebug_source_path }}/modules/xdebug.so"
+    dest: "{{ php_xdebug_module_path }}/xdebug.so"
+    remote_src: yes
   when: not is_installed.stdout
   notify: restart webserver
 
