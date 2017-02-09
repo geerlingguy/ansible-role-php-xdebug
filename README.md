@@ -25,10 +25,6 @@ The version of Xdebug to be installed (see [Updates](https://xdebug.org/updates.
 
 Whether to enable XDebug coverage and default exception handling or not. Disable these for slightly improved PHP performance, enable these to use XDebug to the fullest extent.
 
-    php_xdebug_cli_enable: 1
-
-Whether xdebug is enabled for the CLI.
-
     php_xdebug_module_path: /usr/lib64/php/modules
 
 The path where `xdebug.so` will be installed.
