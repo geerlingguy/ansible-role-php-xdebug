@@ -22,6 +22,7 @@
   apt: "name={{ item }} state=installed"
   with_items:
     - build-essential
+    - php-dev
   when: ansible_os_family == 'Debian'
 
 - name: Untar Xdebug.
