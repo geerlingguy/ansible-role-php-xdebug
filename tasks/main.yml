@@ -56,4 +56,4 @@
     remote_src: True
   notify: restart webserver
 
-- include: configure.yml
+- include_tasks: configure.yml
