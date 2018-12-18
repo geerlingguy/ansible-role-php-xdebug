@@ -19,3 +19,12 @@ php_xdebug_max_nesting_level: 256
 
 # Only used on Debian/Ubuntu.
 php_xdebug_cli_disable: false
+
+php_xdebug_profiler_enable: 0
+php_xdebug_profiler_enable_trigger: 1
+php_xdebug_profiler_output_dir: /tmp
+php_xdebug_profiler_output_name: cachegrind.out.%p
+
+php_xdebug_trace_output_name: trace.%c
+php_xdebug_trace_enable_trigger: 1
+php_xdebug_trace_output_dir: /tmp
