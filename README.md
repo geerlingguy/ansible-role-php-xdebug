@@ -54,6 +54,42 @@ The IDE key to use in the URL when making Xdebug requests (e.g. `http://example.
 
 The maximimum function nesting level before Xdebug bails and throws a fatal exception.
 
+    php_xdebug_collect_assignments: 0
+
+This controls whether Xdebug should add variable assignments to function traces.
+
+    php_xdebug_collect_params: 0
+
+This controls whether Xdebug should collect the parameters passed to functions when a function call is recorded in either the function trace or the stack trace. Do not enable this without reading the [documentation](https://xdebug.org/docs/all_settings#collect_params).
+
+    php_xdebug_collect_return: 0
+
+This setting, defaulting to 0, controls whether Xdebug should write the return value of function calls to the trace files.
+
+    php_xdebug_show_mem_delta: 0
+
+When enabled, Xdebug's human-readable generated trace files will show the difference in memory usage between function calls.
+
+    php_xdebug_trace_enable_trigger: 0
+
+When set to 1, you can trigger the generation of trace files by using the XDEBUG_TRACE GET/POST parameter, or set a cookie with the name XDEBUG_TRACE.
+
+    php_xdebug_trace_format: 0
+
+Set this to 2 for the trace files to be generated in basic HTML instead of plain text. See the [documentation](https://xdebug.org/docs/all_settings#trace_format) for other options.
+
+    php_xdebug_trace_options: 0
+
+When set to '1' the trace files will be appended to, instead of being overwritten in subsequent requests.
+
+    php_xdebug_trace_output_dir: /tmp
+
+The directory where the tracing files will be written to, make sure that the user who the PHP will be running as has write permissions to that directory.
+
+    php_xdebug_trace_output_name: "trace.%c"
+
+This setting determines the name of the file that is used to dump traces into. See the [documentation](https://xdebug.org/docs/all_settings#trace_output_name) on how to specify the format.
+
     php_xdebug_cli_disable: false
 
 (Debian/Ubuntu ONLY) Disable xdebug for the CLI SAPI.

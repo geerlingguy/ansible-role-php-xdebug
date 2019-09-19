@@ -17,5 +17,16 @@ php_xdebug_idekey: sublime.xdebug
 
 php_xdebug_max_nesting_level: 256
 
+php_xdebug_collect_assignments: 0
+php_xdebug_collect_params: 0
+php_xdebug_collect_return: 0
+
+php_xdebug_show_mem_delta: 0
+php_xdebug_trace_enable_trigger: 0
+php_xdebug_trace_format: 0
+php_xdebug_trace_options: 0
+php_xdebug_trace_output_dir: /tmp
+php_xdebug_trace_output_name: "trace.%c"
+
 # Only used on Debian/Ubuntu.
 php_xdebug_cli_disable: false
