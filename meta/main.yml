@@ -3,7 +3,8 @@ dependencies:
   - geerlingguy.php
 
 galaxy_info:
-  role_name: php-xdebug
+  # See: https://github.com/ansible/galaxy/issues/2393
+  # role_name: php-xdebug
   author: geerlingguy
   description: PHP XDebug for Linux
   company: "Midwestern Mac, LLC"
