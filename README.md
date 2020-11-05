@@ -1,6 +1,6 @@
 # Ansible Role: PHP-XDebug
 
-[![Build Status](https://travis-ci.com/geerlingguy/ansible-role-php-xdebug.svg?branch=master)](https://travis-ci.com/geerlingguy/ansible-role-php-xdebug)
+[![CI](https://github.com/geerlingguy/ansible-role-php-xdebug/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-php-xdebug/actions?query=workflow%3ACI)
 
 Installs PHP [XDebug](http://xdebug.org/) on Linux servers.
 
