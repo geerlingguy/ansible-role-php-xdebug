@@ -19,3 +19,12 @@ php_xdebug_max_nesting_level: 256
 
 # Only used on Debian/Ubuntu.
 php_xdebug_cli_disable: false
+
+# Configuration for Xdebug version 3 and up.
+php_xdebug_mode: "develop"
+
+php_xdebug_discover_client_host: "false"
+php_xdebug_client_host: localhost
+php_xdebug_client_port: "9003"
+php_xdebug_log: /tmp/xdebug.log
+php_xdebug_start_with_request: "default"
