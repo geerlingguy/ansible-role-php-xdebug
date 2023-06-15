@@ -16,7 +16,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
 Where Xdebug setup files will be downloaded and built.
 
-    php_xdebug_version: 2.9.5
+    php_xdebug_version: 3.2.1
 
 The version of Xdebug to be installed (see [Updates](https://xdebug.org/updates.php) for a current listing).
 
