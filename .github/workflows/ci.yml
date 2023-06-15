@@ -42,8 +42,8 @@ jobs:
       matrix:
         distro:
           - rockylinux8
-          - ubuntu1804
-          - debian10
+          - ubuntu2204
+          - debian11
 
     steps:
       - name: Check out the codebase.
