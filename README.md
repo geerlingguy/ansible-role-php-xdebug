@@ -1,6 +1,6 @@
 # Ansible Role: PHP-XDebug
 
-[![CI](https://github.com/geerlingguy/ansible-role-php-xdebug/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-php-xdebug/actions?query=workflow%3ACI)
+[![CI](https://github.com/geerlingguy/ansible-role-php-xdebug/actions/workflows/ci.yml/badge.svg)](https://github.com/geerlingguy/ansible-role-php-xdebug/actions/workflows/ci.yml)
 
 Installs PHP [XDebug](http://xdebug.org/) on Linux servers.
 
